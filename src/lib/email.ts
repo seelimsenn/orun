@@ -1,6 +1,7 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Bypasses the build-time error when the API key is not yet available in the environment
+const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy_key_for_build')
 
 export async function sendPasswordResetEmail(email: string, token: string) {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'

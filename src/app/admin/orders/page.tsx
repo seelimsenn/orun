@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { PrismaClient } from '@prisma/client'
 import { DeleteOrderButton } from './DeleteOrderButton'
 const prisma = new PrismaClient()

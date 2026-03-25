@@ -1,9 +1,9 @@
 'use client'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { pageview, GA_TRACKING_ID } from '@/lib/analytics'
 
-export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
+function AnalyticsContent() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 
@@ -13,5 +13,13 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     pageview(url)
   }, [pathname, searchParams])
 
-  return <>{children}</>
+  return null
+}
+
+export function AnalyticsTracker() {
+  return (
+    <Suspense fallback={null}>
+      <AnalyticsContent />
+    </Suspense>
+  )
 }

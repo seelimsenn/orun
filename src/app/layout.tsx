@@ -3,7 +3,7 @@ import { Playfair_Display, Lora } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/CartContext";
 import { CartDrawer } from "@/components/CartDrawer";
-import { AnalyticsProvider } from "@/components/AnalyticsProvider";
+import { AnalyticsTracker } from "@/components/AnalyticsProvider";
 import Script from "next/script";
 
 const playfair = Playfair_Display({
@@ -62,9 +62,8 @@ export default function RootLayout({
         ></div>
         <CartProvider>
           <FavoritesProvider>
-            <AnalyticsProvider>
-              {children}
-            </AnalyticsProvider>
+            <AnalyticsTracker />
+            {children}
             <CartDrawer />
           </FavoritesProvider>
         </CartProvider>
